@@ -87,9 +87,12 @@ RegisterNetEvent('tcrp-stables:client:custShop', function()
         Wait(3900)
         DestroyCam(groundCam)
     end
-    createCamera(horsePed)
+    if horsePed ~= 0 then 
+        createCamera(horsePed)
+    else 
+        QRCore.Functions.Notify('No Horse Detected', 'error', 7500)
+    end
 end)
-
 RegisterCommand('sethorsename',function(input)
     local input = exports['qr-input']:ShowInput({
     header = "Name your horse",
