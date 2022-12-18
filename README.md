@@ -1,4 +1,10 @@
 # 🐴 tcrp-stable
+* Horse Customization
+* Horse Inventories
+* Horse Naming 
+* And Much, Much More! 
+
+
 
 ## 1. Requirements
 
