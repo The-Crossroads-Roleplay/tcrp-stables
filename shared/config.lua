@@ -1144,162 +1144,162 @@ Config.Masks = {
 
 --[[
 
-		["a_c_horse_americanpaint_greyovero"]
-		["a_c_horse_americanpaint_overo"]
-		["a_c_horse_americanpaint_splashedwhite"] IN USE
-		["A_C_Horse_AmericanPaint_Tobiano"] IN USE
+        ["a_c_horse_americanpaint_greyovero"]
+        ["a_c_horse_americanpaint_overo"]
+        ["a_c_horse_americanpaint_splashedwhite"] IN USE
+        ["A_C_Horse_AmericanPaint_Tobiano"] IN USE
 
-		["A_C_Horse_KentuckySaddle_Grey"] IN USE
-		["A_C_Horse_KentuckySaddle_Black"] IN USE
-		["A_C_Horse_KentuckySaddle_Buttermilkbuckskin_pc"] IN USE
-		["A_C_Horse_KentuckySaddle_Chestnutpinto"] IN USE
-		["A_C_Horse_KentuckySaddle_Silverbay"] IN USE
+        ["A_C_Horse_KentuckySaddle_Grey"] IN USE
+        ["A_C_Horse_KentuckySaddle_Black"] IN USE
+        ["A_C_Horse_KentuckySaddle_Buttermilkbuckskin_pc"] IN USE
+        ["A_C_Horse_KentuckySaddle_Chestnutpinto"] IN USE
+        ["A_C_Horse_KentuckySaddle_Silverbay"] IN USE
 
-		["a_c_horse_americanstandardbred_silvertailbuckskin"] IN USE
-		["a_c_horse_americanstandardbred_palominodapple"] IN USE
-		["a_c_horse_americanstandardbred_lightbuckskin"] IN USE
-		["a_c_horse_americanstandardbred_buckskin"]
-		["a_c_horse_americanstandardbred_black"]
+        ["a_c_horse_americanstandardbred_silvertailbuckskin"] IN USE
+        ["a_c_horse_americanstandardbred_palominodapple"] IN USE
+        ["a_c_horse_americanstandardbred_lightbuckskin"] IN USE
+        ["a_c_horse_americanstandardbred_buckskin"]
+        ["a_c_horse_americanstandardbred_black"]
 
-		["a_c_horse_andalusian_rosegray"] IN USE
-		["a_c_horse_andalusian_perlino"]
-		["a_c_horse_andalusian_darkbay"]
+        ["a_c_horse_andalusian_rosegray"] IN USE
+        ["a_c_horse_andalusian_perlino"]
+        ["a_c_horse_andalusian_darkbay"]
 
-		["A_C_Horse_Thoroughbred_DappleGrey"] IN USE
-		["A_C_Horse_Thoroughbred_blackchestnut"] IN USE
-		["A_C_Horse_Thoroughbred_bloodbay"]
-		["A_C_Horse_Thoroughbred_brindle"]
-		["A_C_Horse_Thoroughbred_reversedappleblack"]
+        ["A_C_Horse_Thoroughbred_DappleGrey"] IN USE
+        ["A_C_Horse_Thoroughbred_blackchestnut"] IN USE
+        ["A_C_Horse_Thoroughbred_bloodbay"]
+        ["A_C_Horse_Thoroughbred_brindle"]
+        ["A_C_Horse_Thoroughbred_reversedappleblack"]
 
-		["a_c_horse_shire_ravenblack"]
-		["a_c_horse_shire_lightgrey"] IN USE
-		["a_c_horse_shire_darkbay"] 
+        ["a_c_horse_shire_ravenblack"]
+        ["a_c_horse_shire_lightgrey"] IN USE
+        ["a_c_horse_shire_darkbay"] 
 
-		["a_c_horse_appaloosa_blacksnowflake"] 
-		["a_c_horse_appaloosa_blanket"] IN USE
-		["a_c_horse_appaloosa_brownleopard"] IN USE
-		["a_c_horse_appaloosa_fewspotted_pc"]
-		["a_c_horse_appaloosa_leopard"]
-		["a_c_horse_appaloosa_leopardblanket"]
+        ["a_c_horse_appaloosa_blacksnowflake"] 
+        ["a_c_horse_appaloosa_blanket"] IN USE
+        ["a_c_horse_appaloosa_brownleopard"] IN USE
+        ["a_c_horse_appaloosa_fewspotted_pc"]
+        ["a_c_horse_appaloosa_leopard"]
+        ["a_c_horse_appaloosa_leopardblanket"]
 
-		["a_c_horse_arabian_white"] IN USE
-		["a_c_horse_arabian_warpedbrindle_pc"]
-		["a_c_horse_arabian_rosegreybay"]
-		["a_c_horse_arabian_redchestnut"] IN USE
-		["a_c_horse_arabian_grey"]
-		["a_c_horse_arabian_black"]
+        ["a_c_horse_arabian_white"] IN USE
+        ["a_c_horse_arabian_warpedbrindle_pc"]
+        ["a_c_horse_arabian_rosegreybay"]
+        ["a_c_horse_arabian_redchestnut"] IN USE
+        ["a_c_horse_arabian_grey"]
+        ["a_c_horse_arabian_black"]
 
-		["a_c_horse_ardennes_strawberryroan"]
-		["a_c_horse_ardennes_irongreyroan"] IN USE
-		["a_c_horse_ardennes_bayroan"]
+        ["a_c_horse_ardennes_strawberryroan"]
+        ["a_c_horse_ardennes_irongreyroan"] IN USE
+        ["a_c_horse_ardennes_bayroan"]
 
-		["a_c_horse_belgian_mealychestnut"] IN USE
-		["a_c_horse_belgian_blondchestnut"] IN USE
+        ["a_c_horse_belgian_mealychestnut"] IN USE
+        ["a_c_horse_belgian_blondchestnut"] IN USE
 
-		["a_c_horse_breton_steelgrey"]
-		["a_c_horse_breton_sorrel"] IN USE
-		["a_c_horse_breton_sealbrown"]
-		["a_c_horse_breton_redroan"] IN USE
-		["a_c_horse_breton_mealydapplebay"]
-		["a_c_horse_breton_grullodun"] IN USE
+        ["a_c_horse_breton_steelgrey"]
+        ["a_c_horse_breton_sorrel"] IN USE
+        ["a_c_horse_breton_sealbrown"]
+        ["a_c_horse_breton_redroan"] IN USE
+        ["a_c_horse_breton_mealydapplebay"]
+        ["a_c_horse_breton_grullodun"] IN USE
 
-		["a_c_horse_criollo_sorrelovero"] IN USE
-		["a_c_horse_criollo_marblesabino"]
-		["a_c_horse_criollo_dun"] IN USE
-		["a_c_horse_criollo_blueroanovero"]
-		["a_c_horse_criollo_bayframeovero"]
-		["a_c_horse_criollo_baybrindle"]
+        ["a_c_horse_criollo_sorrelovero"] IN USE
+        ["a_c_horse_criollo_marblesabino"]
+        ["a_c_horse_criollo_dun"] IN USE
+        ["a_c_horse_criollo_blueroanovero"]
+        ["a_c_horse_criollo_bayframeovero"]
+        ["a_c_horse_criollo_baybrindle"]
 
-		["a_c_horse_dutchwarmblood_chocolateroan"] IN USE
-		["a_c_horse_dutchwarmblood_sealbrown"]
-		["a_c_horse_dutchwarmblood_sootybuckskin"] IN USE
-		["A_C_Horse_Buell_WarVets"],
+        ["a_c_horse_dutchwarmblood_chocolateroan"] IN USE
+        ["a_c_horse_dutchwarmblood_sealbrown"]
+        ["a_c_horse_dutchwarmblood_sootybuckskin"] IN USE
+        ["A_C_Horse_Buell_WarVets"],
 
-		["a_c_horse_gypsycob_palominoblagdon"]
-		["a_c_horse_gypsycob_piebald"]
-		["a_c_horse_gypsycob_skewbald"] IN USE
-		["a_c_horse_gypsycob_splashedbay"]
-		["a_c_horse_gypsycob_splashedpiebald"] IN USE
-		["a_c_horse_gypsycob_whiteblagdon"] IN USE
+        ["a_c_horse_gypsycob_palominoblagdon"]
+        ["a_c_horse_gypsycob_piebald"]
+        ["a_c_horse_gypsycob_skewbald"] IN USE
+        ["a_c_horse_gypsycob_splashedbay"]
+        ["a_c_horse_gypsycob_splashedpiebald"] IN USE
+        ["a_c_horse_gypsycob_whiteblagdon"] IN USE
 
-		["a_c_horse_kladruber_white"] IN USE
-		["a_c_horse_kladruber_silver"]
-		["a_c_horse_kladruber_grey"]
-		["a_c_horse_kladruber_dapplerosegrey"] IN USE
-		["a_c_horse_kladruber_cremello"] IN USE
-		["a_c_horse_kladruber_black"] IN USE
+        ["a_c_horse_kladruber_white"] IN USE
+        ["a_c_horse_kladruber_silver"]
+        ["a_c_horse_kladruber_grey"]
+        ["a_c_horse_kladruber_dapplerosegrey"] IN USE
+        ["a_c_horse_kladruber_cremello"] IN USE
+        ["a_c_horse_kladruber_black"] IN USE
 
-		["a_c_horse_missourifoxtrotter_silverdapplepinto"] IN USE
-		["a_c_horse_missourifoxtrotter_sablechampagne"]
-		["a_c_horse_missourifoxtrotter_amberchampagne"]
-		["a_c_horse_missourifoxtrotter_dapplegrey"] IN USE
-		["a_c_horse_missourifoxtrotter_blacktovero"]
-		["a_c_horse_missourifoxtrotter_blueroan"]
-		["a_c_horse_missourifoxtrotter_buckskinbrindle"] IN USE
+        ["a_c_horse_missourifoxtrotter_silverdapplepinto"] IN USE
+        ["a_c_horse_missourifoxtrotter_sablechampagne"]
+        ["a_c_horse_missourifoxtrotter_amberchampagne"]
+        ["a_c_horse_missourifoxtrotter_dapplegrey"] IN USE
+        ["a_c_horse_missourifoxtrotter_blacktovero"]
+        ["a_c_horse_missourifoxtrotter_blueroan"]
+        ["a_c_horse_missourifoxtrotter_buckskinbrindle"] IN USE
 
-		["A_C_Horse_Morgan_Palomino"]
-		["A_C_Horse_Morgan_Bay"] IN USE
-		["A_C_Horse_Morgan_Bayroan"] IN USE
-		["A_C_Horse_Morgan_flaxenchestnut"] IN USE
-		["A_C_Horse_Morgan_liverchestnut_pc"] IN USE
+        ["A_C_Horse_Morgan_Palomino"]
+        ["A_C_Horse_Morgan_Bay"] IN USE
+        ["A_C_Horse_Morgan_Bayroan"] IN USE
+        ["A_C_Horse_Morgan_flaxenchestnut"] IN USE
+        ["A_C_Horse_Morgan_liverchestnut_pc"] IN USE
 
-		["a_c_horse_mustang_wildbay"] IN USE
-		["a_c_horse_mustang_tigerstripedbay"]
-		["a_c_horse_mustang_grullodun"] IN USE
-		["a_c_horse_mustang_goldendun"] IN USE
-		["a_c_horse_mustang_buckskin"]
-		["a_c_horse_mustang_chestnuttovero"]
-		["a_c_horse_mustang_reddunovero"] IN USE
-		["a_c_horse_mustang_blackovero"]
+        ["a_c_horse_mustang_wildbay"] IN USE
+        ["a_c_horse_mustang_tigerstripedbay"]
+        ["a_c_horse_mustang_grullodun"] IN USE
+        ["a_c_horse_mustang_goldendun"] IN USE
+        ["a_c_horse_mustang_buckskin"]
+        ["a_c_horse_mustang_chestnuttovero"]
+        ["a_c_horse_mustang_reddunovero"] IN USE
+        ["a_c_horse_mustang_blackovero"]
 
-		["a_c_horse_nokota_whiteroan"] IN USE
-		["a_c_horse_nokota_reversedappleroan"]
-		["a_c_horse_nokota_blueroan"] IN USE
+        ["a_c_horse_nokota_whiteroan"] IN USE
+        ["a_c_horse_nokota_reversedappleroan"]
+        ["a_c_horse_nokota_blueroan"] IN USE
 
-		["a_c_horse_hungarianhalfbred_piebaldtobiano"]
-		["a_c_horse_hungarianhalfbred_liverchestnut"] IN USE
-		["a_c_horse_hungarianhalfbred_flaxenchestnut"]
-		["a_c_horse_hungarianhalfbred_darkdapplegrey"]
+        ["a_c_horse_hungarianhalfbred_piebaldtobiano"]
+        ["a_c_horse_hungarianhalfbred_liverchestnut"] IN USE
+        ["a_c_horse_hungarianhalfbred_flaxenchestnut"]
+        ["a_c_horse_hungarianhalfbred_darkdapplegrey"]
 
-		["a_c_horse_norfolkroadster_black"]
-		["a_c_horse_norfolkroadster_dappledbuckskin"]
-		["a_c_horse_norfolkroadster_piebaldroan"] IN USE
-		["a_c_horse_norfolkroadster_rosegrey"]
-		["a_c_horse_norfolkroadster_speckledgrey"] IN USE
-		["a_c_horse_norfolkroadster_spottedtricolor"] IN USE
+        ["a_c_horse_norfolkroadster_black"]
+        ["a_c_horse_norfolkroadster_dappledbuckskin"]
+        ["a_c_horse_norfolkroadster_piebaldroan"] IN USE
+        ["a_c_horse_norfolkroadster_rosegrey"]
+        ["a_c_horse_norfolkroadster_speckledgrey"] IN USE
+        ["a_c_horse_norfolkroadster_spottedtricolor"] IN USE
 
-		["a_c_horse_suffolkpunch_sorrel"] IN USE
-		["a_c_horse_suffolkpunch_redchestnut"]
+        ["a_c_horse_suffolkpunch_sorrel"] IN USE
+        ["a_c_horse_suffolkpunch_redchestnut"]
 
-		["a_c_horse_tennesseewalker_redroan"] IN USE
-		["a_c_horse_tennesseewalker_mahoganybay"]
-		["a_c_horse_tennesseewalker_goldpalomino_pc"] IN USE
-		["a_c_horse_tennesseewalker_flaxenroan"] IN USE
-		["a_c_horse_tennesseewalker_dapplebay"]
-		["a_c_horse_tennesseewalker_chestnut"] IN USE
-		["a_c_horse_tennesseewalker_blackrabicano"]
+        ["a_c_horse_tennesseewalker_redroan"] IN USE
+        ["a_c_horse_tennesseewalker_mahoganybay"]
+        ["a_c_horse_tennesseewalker_goldpalomino_pc"] IN USE
+        ["a_c_horse_tennesseewalker_flaxenroan"] IN USE
+        ["a_c_horse_tennesseewalker_dapplebay"]
+        ["a_c_horse_tennesseewalker_chestnut"] IN USE
+        ["a_c_horse_tennesseewalker_blackrabicano"]
 
-		["A_C_Horse_Turkoman_Gold"] IN USE
-		["A_C_Horse_Turkoman_Silver"] IN USE
-		["A_C_Horse_Turkoman_Darkbay"] IN USE
-		["a_c_horse_turkoman_black"]
-		["a_c_horse_turkoman_chestnut"]
-		["a_c_horse_turkoman_grey"]
-		["a_c_horse_turkoman_perlino"]
+        ["A_C_Horse_Turkoman_Gold"] IN USE
+        ["A_C_Horse_Turkoman_Silver"] IN USE
+        ["A_C_Horse_Turkoman_Darkbay"] IN USE
+        ["a_c_horse_turkoman_black"]
+        ["a_c_horse_turkoman_chestnut"]
+        ["a_c_horse_turkoman_grey"]
+        ["a_c_horse_turkoman_perlino"]
 
-		["a_c_horse_eagleflies"] 
-		["a_c_horse_gang_bill"] 
-		["a_c_horse_gang_charles"] 
-		["a_c_horse_gang_dutch"] 
-		["a_c_horse_gang_john"] 
-		["a_c_horse_gang_karen"]
-		["a_c_horse_gang_lenny"]
-		["a_c_horse_gang_micah"]
-		["a_c_horse_gang_sadie"]
-		["a_c_horse_gang_sadie_endlesssummer"]
-		["a_c_horse_gang_uncle"]
-		["a_c_horse_gang_uncle_endlesssummer"]
-		["a_c_horse_john_endlesssummer"]
-	}
+        ["a_c_horse_eagleflies"] 
+        ["a_c_horse_gang_bill"] 
+        ["a_c_horse_gang_charles"] 
+        ["a_c_horse_gang_dutch"] 
+        ["a_c_horse_gang_john"] 
+        ["a_c_horse_gang_karen"]
+        ["a_c_horse_gang_lenny"]
+        ["a_c_horse_gang_micah"]
+        ["a_c_horse_gang_sadie"]
+        ["a_c_horse_gang_sadie_endlesssummer"]
+        ["a_c_horse_gang_uncle"]
+        ["a_c_horse_gang_uncle_endlesssummer"]
+        ["a_c_horse_john_endlesssummer"]
+    }
 
 ]]
