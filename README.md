@@ -6,9 +6,8 @@
 
 ## 2. Installation
 - drag and drop tcrp-stables into resources
-
-## 3. Installation
 - Add ```ensure tcrp-stable``` in server.cfg
+
 
 # License
 
