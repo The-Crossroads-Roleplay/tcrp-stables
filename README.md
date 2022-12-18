@@ -9,6 +9,7 @@
 ## 1. Requirements
 
 [qr-core](https://github.com/QRCore-RedM-Re/qr-core)
+[qr-target](https://github.com/QRCore-RedM-Re/qr-target)
 
 ## 2. Installation
 - drag and drop tcrp-stables into resources
