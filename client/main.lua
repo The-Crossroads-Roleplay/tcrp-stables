@@ -1266,7 +1266,7 @@ CreateThread(function()
         Wait(1)
         if Citizen.InvokeNative(0x91AEF906BCA88877, 0, QRCore.Shared.Keybinds['B']) then -- openinventory
             InvHorse()
-			Wait(1) -- Spam protect
+            Wait(1) -- Spam protect
         end
     end
 end)
@@ -1389,91 +1389,91 @@ RegisterNetEvent('tcrp-stables:custMenu',function()
         {
             header = "Select Saddle",
             txt = "Select a saddle for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:saddleMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
             header = "Select Blanket",
             txt = "Select a blanket for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:blanketMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
             header = "Select Horn",
             txt = "Select a horn for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:hornMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
             header = "Select Saddle Bag",
             txt = "Select a saddle bag for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:bagMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
             header = "Select Stirrup",
             txt = "Select a Stirrup for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:stirrupMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
             header = "Select Luggage",
             txt = "Select luggage for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:luggageMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
             header = "Select Mane",
             txt = "Select a mane for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:maneMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
             header = "Select Tail",
             txt = "Select a tail for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:tailMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
             header = "Select Mask",
             txt = "Select a mask for your horse",
-			icon = "fas fa-angle-double-right",
+            icon = "fas fa-angle-double-right",
             params = {
                 event = 'tcrp-stables:client:maskMenu',
-				isServer = false,
-				args = {}
+                isServer = false,
+                args = {}
             }
         },
         {
@@ -2474,17 +2474,17 @@ CreateThread(function()
         Wait(1)
         if Citizen.InvokeNative(0x91AEF906BCA88877, 0, QRCore.Shared.Keybinds['H']) then -- call horse
             if not HorseCalled then
-			SpawnHorse()
+            SpawnHorse()
             HorseCalled = true
-			Wait(10000) -- Spam protect
+            Wait(10000) -- Spam protect
      else
         moveHorseToPlayer()
          end
     elseif Citizen.InvokeNative(0x91AEF906BCA88877, 0, QRCore.Shared.Keybinds['HorseCommandFlee']) then -- flee horse
-		    if horseSpawned ~= 0 then
-			    Flee()
-		    end
-		end
+            if horseSpawned ~= 0 then
+                Flee()
+            end
+        end
     end
 end)
 
@@ -2693,37 +2693,37 @@ RegisterNetEvent('tcrp-stables:client:DeleteHorse', function(data)
     TriggerServerEvent("tcrp-stables:server:DelHores", data.player.id)
 end)
 
-	----------------------------- Humanity's Command Cave   -----------------------------
-	RegisterCommand("hl", function()
-		Citizen.InvokeNative(0xD3A7B003ED343FD9, SpawnplayerHorse, 0x635E387C, true, true, true) -- add comp
-	end)
-	RegisterCommand("hlx", function()
-		Citizen.InvokeNative(0x0D7FFA1B2F69ED82, SpawnplayerHorse, 0x635E387C, true, true, true) -- remove comp
-	end)
-	--[[ 	RegisterCommand("saoff", function()
-		Citizen.InvokeNative(0x0D7FFA1B2F69ED82, SpawnplayerHorse, 0x150D0DAA, true, true, true) -- remove comp
-	end) ]]
-	RegisterCommand("hfemale", function()
-		Citizen.InvokeNative(0x5653AB26C82938CF, entity, 41611, 0.0)
-		Citizen.InvokeNative(0xCC8CA3E88256E58F, entity, 0, 1, 1, 1, 0)
-	end) 
-	RegisterCommand("hmale", function()
-		Citizen.InvokeNative(0x5653AB26C82938CF, entity, 41611, 1.0) 
-		Citizen.InvokeNative(0xCC8CA3E88256E58F, entity, 0, 1, 1, 1, 0)
-	end) 
-	-- Exiting Humanity's Command Cave
+    ----------------------------- Humanity's Command Cave   -----------------------------
+    RegisterCommand("hl", function()
+        Citizen.InvokeNative(0xD3A7B003ED343FD9, SpawnplayerHorse, 0x635E387C, true, true, true) -- add comp
+    end)
+    RegisterCommand("hlx", function()
+        Citizen.InvokeNative(0x0D7FFA1B2F69ED82, SpawnplayerHorse, 0x635E387C, true, true, true) -- remove comp
+    end)
+    --[[     RegisterCommand("saoff", function()
+        Citizen.InvokeNative(0x0D7FFA1B2F69ED82, SpawnplayerHorse, 0x150D0DAA, true, true, true) -- remove comp
+    end) ]]
+    RegisterCommand("hfemale", function()
+        Citizen.InvokeNative(0x5653AB26C82938CF, entity, 41611, 0.0)
+        Citizen.InvokeNative(0xCC8CA3E88256E58F, entity, 0, 1, 1, 1, 0)
+    end) 
+    RegisterCommand("hmale", function()
+        Citizen.InvokeNative(0x5653AB26C82938CF, entity, 41611, 1.0) 
+        Citizen.InvokeNative(0xCC8CA3E88256E58F, entity, 0, 1, 1, 1, 0)
+    end) 
+    -- Exiting Humanity's Command Cave
 
-	----------------------------- Chat Suggestions   -----------------------------
-	TriggerEvent("chat:addSuggestion", "/hl", "Add a lantern to your horse!", {
-		{name = "", help = "to remove do /hlx"}
-	})
-	TriggerEvent("chat:addSuggestion", "/hlx", "Remove the lantern from your horse", {
-		{name = "", help = "Do /hl to add a lantern"}
-	})
-	TriggerEvent("chat:addSuggestion", "/hfemale", "Turn your horse female!", {
-	})
-	TriggerEvent("chat:addSuggestion", "/hmale", "Turn your horse male!", {
-	})
-	----------------------------- Chat Suggestions End   -----------------------------
+    ----------------------------- Chat Suggestions   -----------------------------
+    TriggerEvent("chat:addSuggestion", "/hl", "Add a lantern to your horse!", {
+        {name = "", help = "to remove do /hlx"}
+    })
+    TriggerEvent("chat:addSuggestion", "/hlx", "Remove the lantern from your horse", {
+        {name = "", help = "Do /hl to add a lantern"}
+    })
+    TriggerEvent("chat:addSuggestion", "/hfemale", "Turn your horse female!", {
+    })
+    TriggerEvent("chat:addSuggestion", "/hmale", "Turn your horse male!", {
+    })
+    ----------------------------- Chat Suggestions End   -----------------------------
 
     ----------------------------- Inventory Shit   -----------------------------
