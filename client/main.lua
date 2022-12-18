@@ -2268,7 +2268,7 @@ function LuggageMenu(hash)
             isMenuHeader = true
         }
     }
-    local luggages = Config.Luggages  
+    local luggages = Config.Luggage 
 
     luggageMenu[#luggageMenu+1] = {
         header = "Go Back",
