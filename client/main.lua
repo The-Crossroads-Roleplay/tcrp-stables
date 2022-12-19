@@ -1331,7 +1331,6 @@ local function SpawnHorse()
                 if atCoords == nil then
                     local x, y, z = table.unpack(location)
                     local bool, nodePosition = GetClosestVehicleNode(x, y, z, 0, 3.0, 0.0)
-                    print(nodePosition)
             
                     local index = 0
                     while index <= 25 do
@@ -1340,7 +1339,6 @@ local function SpawnHorse()
                             bool = _bool
                             nodePosition = _nodePosition
                             index = index + 3
-                            print(nodePosition)
                         else
                             break
                         end
@@ -1371,7 +1369,6 @@ local function SpawnHorse()
                         HorseCalled = false
                     else 
                         SetModelAsNoLongerNeeded(model)
-                        print(horsePed)
                         Citizen.InvokeNative(0x58A850EAEE20FAA3, horsePed, true)
                         while not DoesEntityExist(horsePed) do
                             Wait(10)
