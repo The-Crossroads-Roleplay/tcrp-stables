@@ -1314,6 +1314,9 @@ local function SpawnHorse()
             local location = GetEntityCoords(ped)
             local howfar = math.random(50,100)
             local hname = data.name
+            local coords = GetEntityCoords(PlayerPedId())
+            local horseCoords = GetEntityCoords(horsePed)
+            local distance = GetDistanceBetweenCoords(coords, horsePed)
             --local horseId = data.player.id
             --local horsestash = hname..model..
 
@@ -1328,6 +1331,7 @@ local function SpawnHorse()
                 if atCoords == nil then
                     local x, y, z = table.unpack(location)
                     local bool, nodePosition = GetClosestVehicleNode(x, y, z, 0, 3.0, 0.0)
+                    print(nodePosition)
             
                     local index = 0
                     while index <= 25 do
@@ -1336,6 +1340,7 @@ local function SpawnHorse()
                             bool = _bool
                             nodePosition = _nodePosition
                             index = index + 3
+                            print(nodePosition)
                         else
                             break
                         end
@@ -1354,25 +1359,40 @@ local function SpawnHorse()
                 local heading = 300
                 if (horsePed == 0) then
                     horsePed = CreatePed(model, spawnPosition, GetEntityHeading(horsePed), true, true, 0, 0)
-                    Citizen.InvokeNative(0x58A850EAEE20FAA3, horsePed, true)
-                    while not DoesEntityExist(horsePed) do
-                        Wait(10)
-                    end
-                    getControlOfEntity(horsePed)
-                    Citizen.InvokeNative(0x283978A15512B2FE, horsePed, true)
-                    Citizen.InvokeNative(0x23F74C2FDA6E7C61, -1230993421, horsePed)
-                    local hasp = GetHashKey("PLAYER")
-                    Citizen.InvokeNative(0xADB3F206518799E8, horsePed, hasp)
-                    Citizen.InvokeNative(0xCC97B29285B1DC3B, horsePed, 1)
-                    Citizen.InvokeNative(0x931B241409216C1F , PlayerPedId(), horsePed , 0)
-                    SetModelAsNoLongerNeeded(model)
-                    SetPedNameDebug(horsePed, hname)
-                    SetPedPromptName(horsePed, hname)
-                    horseSpawned = true                    
-                    moveHorseToPlayer()
-                    applyImportantThings()
-                    Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
-
+                    local coords = GetEntityCoords(PlayerPedId())
+                    local horseCoords = GetEntityCoords(horsePed)
+                    local distance = GetDistanceBetweenCoords(horseCoords, coords)
+                    if distance > 150 then
+                        QRCore.Functions.Notify('You need to be near a road!', 'error', 7500)
+                        Wait(100)
+                        DeleteEntity(horsePed)
+                        Wait(100)
+                        horsePed = 0
+                        HorseCalled = false
+                    else 
+                        SetModelAsNoLongerNeeded(model)
+                        print(horsePed)
+                        Citizen.InvokeNative(0x58A850EAEE20FAA3, horsePed, true)
+                        while not DoesEntityExist(horsePed) do
+                            Wait(10)
+                        end
+                        Wait(100)
+                        getControlOfEntity(horsePed)
+                        Citizen.InvokeNative(0x283978A15512B2FE, horsePed, true)
+                        Citizen.InvokeNative(0x23F74C2FDA6E7C61, -1230993421, horsePed)
+                        local hasp = GetHashKey("PLAYER")
+                        Citizen.InvokeNative(0xADB3F206518799E8, horsePed, hasp)
+                        Citizen.InvokeNative(0xCC97B29285B1DC3B, horsePed, 1)
+                        Citizen.InvokeNative(0x931B241409216C1F , PlayerPedId(), horsePed , 0)
+                        SetModelAsNoLongerNeeded(model)
+                        SetPedNameDebug(horsePed, hname)
+                        SetPedPromptName(horsePed, hname)
+                        horseSpawned = true                    
+                        moveHorseToPlayer()
+                        applyImportantThings()
+                        Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
+                        Wait(5000)    
+                    end              
                 end
             end
         end
