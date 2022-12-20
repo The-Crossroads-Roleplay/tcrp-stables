@@ -60,13 +60,21 @@ local coords
 local hasSpawned = false
 --
 local inValentine = false
+local inValentinen = false
 local inRhodes = false
+local inRhodesn = false
 local inBlackwater = false 
+local inBlackwatern = false
 local inSD = false 
+local inSDn = false 
 local inStrawberry = false
+local inStrawberryn = false
 local inVanhorn = false
+local inVanhornn = false
 local inTumble = false
+local inTumblen = false
 local inColter = false
+local inColtern = false
 --
 RegisterNetEvent('tcrp-stables:client:custShop', function()
     local function createCamera(horsePed)
@@ -109,17 +117,19 @@ RegisterCommand('sethorsename',function(input)
 TriggerServerEvent('tcrp-stables:renameHorse', input)
 end)
 
-Citizen.CreateThread(function() -- Handle Colter
+
+
+Citizen.CreateThread(function() -- Handle Blackwater
     while true do
         local pcoords = GetEntityCoords(PlayerPedId())
-        local hcoords = Config.ColterCoords
+        local hcoords = Config.BlackwaterCoords
         Wait(10000)
          if #(pcoords - hcoords) <= 300.7 then  
-            Wait(1000)
-            if inColter == false then
-                inColter = true
+            Wait(100)
+            if inBlackwater == false then
+                inBlackwater = true
                 for k,v in pairs(Config.BoxZones) do
-                    if k == "Colter" then
+                    if k == "Blackwater" then
                         for j, n in pairs(v) do
                             Wait(1)
                             local model = GetHashKey(n.model)
@@ -132,7 +142,7 @@ Citizen.CreateThread(function() -- Handle Colter
                                 Wait(1)
                             end
                             local hasSpawned = true
-                            table.insert(centities, entity)
+                            table.insert(bwentities, entity)
                             Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
                             FreezeEntityPosition(entity, true)
                             SetEntityCanBeDamaged(entity, false)
@@ -165,87 +175,14 @@ Citizen.CreateThread(function() -- Handle Colter
                             Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
                             SetModelAsNoLongerNeeded(model)
                         end
-                    else 
+                    else
                     end
                 end
-            
-                for key,value in pairs(Config.ModelSpawns) do
-                    while not HasModelLoaded(value.model) do
-                        RequestModel(value.model)
-                        Wait(1)
-                    end
-                    local ped = CreatePed(value.model, value.coords.x, value.coords.y, value.coords.z - 1.0, value.heading, false, false, 0, 0)
-                    while not DoesEntityExist(ped) do
-                        Wait(1)
-                    end
-            
-                    Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
-                    Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
-                    SetEntityCanBeDamaged(ped, false)
-                    SetEntityInvincible(ped, true)
-                    FreezeEntityPosition(ped, true)
-                    SetBlockingOfNonTemporaryEvents(ped, true)
-                    Wait(1)
-                    TriggerEvent('tcrp-stables:DoShit',function(cb)
-                    end)
-                    exports['qr-target']:AddTargetEntity(ped, {
-                        options = {
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Get your horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:menu")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Store Horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:storehorse")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Sell your horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:MenuDel")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label =  "Tack Shop",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                TriggerEvent('tcrp-stables:client:custShop')
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label =  "Trade Horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                TriggerEvent('tcrp-stables:client:tradehorse')
-                                end
-                            }
-                        },
-                        distance = 2.5,
-                    })
-                    SetModelAsNoLongerNeeded(value.model)
-                    table.insert(cnpcs, ped)
-                end
-            else
             end
         else 
-            inColter = false
+            inBlackwater = false
             Wait(1000)
-            for k,v in pairs(centities) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
-            for k,v in pairs(cnpcs) do
+            for k,v in pairs(bwentities) do
                 DeletePed(v)
                 SetEntityAsNoLongerNeeded(v)
             end
@@ -253,66 +190,16 @@ Citizen.CreateThread(function() -- Handle Colter
     end
 end)
 
-Citizen.CreateThread(function() -- Handle VanHorn
+
+Citizen.CreateThread(function() -- Handle Blackwater NPC
     while true do
         local pcoords = GetEntityCoords(PlayerPedId())
-        local hcoords = Config.VanhornCoords
+        local hcoords = Config.BlackwaterCoords
         Wait(10000)
-         if #(pcoords - hcoords) <= 300.7 then  
-            Wait(1000)
-            if inVanhorn == false then
-                inVanhorn = true
-                for k,v in pairs(Config.BoxZones) do
-                    if k == "Vanhorn" then
-                        for j, n in pairs(v) do
-                            Wait(1)
-                            local model = GetHashKey(n.model)
-                            while (not HasModelLoaded(model)) do
-                                RequestModel(model)
-                                Wait(1)
-                            end
-                            local entity = CreatePed(model, n.coords.x, n.coords.y, n.coords.z-1, n.heading, false, true, 0, 0)
-                            while not DoesEntityExist(entity) do
-                                Wait(1)
-                            end
-                            local hasSpawned = true
-                            table.insert(vhentities, entity)
-                            Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
-                            FreezeEntityPosition(entity, true)
-                            SetEntityCanBeDamaged(entity, false)
-                            SetEntityInvincible(entity, true)
-                            SetBlockingOfNonTemporaryEvents(npc, true)
-                            exports['qr-target']:AddTargetEntity(entity, {
-                                options = {
-                                    {
-                                        icon = "fas fa-horse-head",
-                                        label =  n.names.." || " .. n.price ..  "$",
-                                        targeticon = "fas fa-eye",
-                                        action = function(newnames)
-                                                AddTextEntry('FMMC_MPM_NA', "Set horse name")
-                                                DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
-                                                while (UpdateOnscreenKeyboard() == 0) do
-                                                    DisableAllControlActions(0);
-                                                    Wait(0);
-                                                end
-                                                if (GetOnscreenKeyboardResult()) then
-                                                    newnames = GetOnscreenKeyboardResult()
-                                                    TriggerServerEvent('tcrp-stables:server:BuyHorse', n.price, n.model, newnames)
-                                                else
-                                            end
-                                            
-                                        end
-                                    }
-                                },
-                                distance = 2.5,
-                            })
-                            Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
-                            SetModelAsNoLongerNeeded(model)
-                        end
-                    else 
-                    end
-                end
-            
+        if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inBlackwatern == false then
+                inBlackwatern = true            
                 for key,value in pairs(Config.ModelSpawns) do
                     while not HasModelLoaded(value.model) do
                         RequestModel(value.model)
@@ -322,7 +209,6 @@ Citizen.CreateThread(function() -- Handle VanHorn
                     while not DoesEntityExist(ped) do
                         Wait(1)
                     end
-            
                     Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
                     Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
                     SetEntityCanBeDamaged(ped, false)
@@ -378,18 +264,14 @@ Citizen.CreateThread(function() -- Handle VanHorn
                         distance = 2.5,
                     })
                     SetModelAsNoLongerNeeded(value.model)
-                    table.insert(vhnpcs, ped)
+                    table.insert(bwnpcs, ped)
                 end
             else
             end
         else 
-            inVanhorn = false
+            inBlackwatern = false
             Wait(1000)
-            for k,v in pairs(vhentities) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
-            for k,v in pairs(vhnpcs) do
+            for k,v in pairs(bwnpcs) do
                 DeletePed(v)
                 SetEntityAsNoLongerNeeded(v)
             end
@@ -403,7 +285,7 @@ Citizen.CreateThread(function() -- Handle Valentine
         local hcoords = Config.ValCoords
         Wait(10000)
          if #(pcoords - hcoords) <= 300.7 then  
-            Wait(1000)
+            Wait(100)
             if inValentine == false then
                 inValentine = true
                 for k,v in pairs(Config.BoxZones) do
@@ -453,10 +335,31 @@ Citizen.CreateThread(function() -- Handle Valentine
                             Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
                             SetModelAsNoLongerNeeded(model)
                         end
-                    else 
+                    else
                     end
                 end
-            
+            end
+        else 
+            inValentine = false
+            Wait(1000)
+            for k,v in pairs(entities) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+
+Citizen.CreateThread(function() -- Handle Valentine NPC
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.ValCoords
+        Wait(10000)
+        if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inValentinen == false then
+                inValentinen = true            
                 for key,value in pairs(Config.ModelSpawns) do
                     while not HasModelLoaded(value.model) do
                         RequestModel(value.model)
@@ -466,7 +369,6 @@ Citizen.CreateThread(function() -- Handle Valentine
                     while not DoesEntityExist(ped) do
                         Wait(1)
                     end
-            
                     Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
                     Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
                     SetEntityCanBeDamaged(ped, false)
@@ -527,13 +429,649 @@ Citizen.CreateThread(function() -- Handle Valentine
             else
             end
         else 
-            inValentine = false
+            inValentinen = false
             Wait(1000)
-            for k,v in pairs(entities) do
+            for k,v in pairs(npcs) do
                 DeletePed(v)
                 SetEntityAsNoLongerNeeded(v)
             end
-            for k,v in pairs(npcs) do
+        end 
+    end
+end)
+
+Citizen.CreateThread(function() -- Handle Strawberry
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.StrawberryCoords
+        Wait(10000)
+         if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inStrawberry == false then
+                inStrawberry = true
+                for k,v in pairs(Config.BoxZones) do
+                    if k == "Strawberry" then
+                        for j, n in pairs(v) do
+                            Wait(1)
+                            local model = GetHashKey(n.model)
+                            while (not HasModelLoaded(model)) do
+                                RequestModel(model)
+                                Wait(1)
+                            end
+                            local entity = CreatePed(model, n.coords.x, n.coords.y, n.coords.z-1, n.heading, false, true, 0, 0)
+                            while not DoesEntityExist(entity) do
+                                Wait(1)
+                            end
+                            local hasSpawned = true
+                            table.insert(strawberryentities, entity)
+                            Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
+                            FreezeEntityPosition(entity, true)
+                            SetEntityCanBeDamaged(entity, false)
+                            SetEntityInvincible(entity, true)
+                            SetBlockingOfNonTemporaryEvents(npc, true)
+                            exports['qr-target']:AddTargetEntity(entity, {
+                                options = {
+                                    {
+                                        icon = "fas fa-horse-head",
+                                        label =  n.names.." || " .. n.price ..  "$",
+                                        targeticon = "fas fa-eye",
+                                        action = function(newnames)
+                                                AddTextEntry('FMMC_MPM_NA', "Set horse name")
+                                                DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
+                                                while (UpdateOnscreenKeyboard() == 0) do
+                                                    DisableAllControlActions(0);
+                                                    Wait(0);
+                                                end
+                                                if (GetOnscreenKeyboardResult()) then
+                                                    newnames = GetOnscreenKeyboardResult()
+                                                    TriggerServerEvent('tcrp-stables:server:BuyHorse', n.price, n.model, newnames)
+                                                else
+                                            end
+                                            
+                                        end
+                                    }
+                                },
+                                distance = 2.5,
+                            })
+                            Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
+                            SetModelAsNoLongerNeeded(model)
+                        end
+                    else
+                    end
+                end
+            end
+        else 
+            inStrawberry = false
+            Wait(1000)
+            for k,v in pairs(strawberryentities) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+
+Citizen.CreateThread(function() -- Handle Strawberry NPC
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.StrawberryCoords
+        Wait(10000)
+        if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inStrawberryn == false then
+                inStrawberryn = true            
+                for key,value in pairs(Config.ModelSpawns) do
+                    while not HasModelLoaded(value.model) do
+                        RequestModel(value.model)
+                        Wait(1)
+                    end
+                    local ped = CreatePed(value.model, value.coords.x, value.coords.y, value.coords.z - 1.0, value.heading, false, false, 0, 0)
+                    while not DoesEntityExist(ped) do
+                        Wait(1)
+                    end
+                    Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
+                    Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
+                    SetEntityCanBeDamaged(ped, false)
+                    SetEntityInvincible(ped, true)
+                    FreezeEntityPosition(ped, true)
+                    SetBlockingOfNonTemporaryEvents(ped, true)
+                    Wait(1)
+                    TriggerEvent('tcrp-stables:DoShit',function(cb)
+                    end)
+                    exports['qr-target']:AddTargetEntity(ped, {
+                        options = {
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Get your horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:menu")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Store Horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:storehorse")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Sell your horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:MenuDel")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label =  "Tack Shop",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                TriggerEvent('tcrp-stables:client:custShop')
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label =  "Trade Horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                TriggerEvent('tcrp-stables:client:tradehorse')
+                                end
+                            }
+                        },
+                        distance = 2.5,
+                    })
+                    SetModelAsNoLongerNeeded(value.model)
+                    table.insert(sbnpcs, ped)
+                end
+            else
+            end
+        else 
+            inBlackwatern = false
+            Wait(1000)
+            for k,v in pairs(sbnpcs) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+Citizen.CreateThread(function() -- Handle VanHorn
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.VanhornCoords
+        Wait(10000)
+         if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inVanhorn == false then
+                inVanhorn = true
+                for k,v in pairs(Config.BoxZones) do
+                    if k == "Vanhorn" then
+                        for j, n in pairs(v) do
+                            Wait(1)
+                            local model = GetHashKey(n.model)
+                            while (not HasModelLoaded(model)) do
+                                RequestModel(model)
+                                Wait(1)
+                            end
+                            local entity = CreatePed(model, n.coords.x, n.coords.y, n.coords.z-1, n.heading, false, true, 0, 0)
+                            while not DoesEntityExist(entity) do
+                                Wait(1)
+                            end
+                            local hasSpawned = true
+                            table.insert(vhentities, entity)
+                            Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
+                            FreezeEntityPosition(entity, true)
+                            SetEntityCanBeDamaged(entity, false)
+                            SetEntityInvincible(entity, true)
+                            SetBlockingOfNonTemporaryEvents(npc, true)
+                            exports['qr-target']:AddTargetEntity(entity, {
+                                options = {
+                                    {
+                                        icon = "fas fa-horse-head",
+                                        label =  n.names.." || " .. n.price ..  "$",
+                                        targeticon = "fas fa-eye",
+                                        action = function(newnames)
+                                                AddTextEntry('FMMC_MPM_NA', "Set horse name")
+                                                DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
+                                                while (UpdateOnscreenKeyboard() == 0) do
+                                                    DisableAllControlActions(0);
+                                                    Wait(0);
+                                                end
+                                                if (GetOnscreenKeyboardResult()) then
+                                                    newnames = GetOnscreenKeyboardResult()
+                                                    TriggerServerEvent('tcrp-stables:server:BuyHorse', n.price, n.model, newnames)
+                                                else
+                                            end
+                                            
+                                        end
+                                    }
+                                },
+                                distance = 2.5,
+                            })
+                            Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
+                            SetModelAsNoLongerNeeded(model)
+                        end
+                    else
+                    end
+                end
+            end
+        else 
+            inVanhorn = false
+            Wait(1000)
+            for k,v in pairs(vhentities) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+
+Citizen.CreateThread(function() -- Handle VanHorn NPC
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.VanhornCoords
+        Wait(10000)
+        if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inVanhornn == false then
+                inVanhornn = true            
+                for key,value in pairs(Config.ModelSpawns) do
+                    while not HasModelLoaded(value.model) do
+                        RequestModel(value.model)
+                        Wait(1)
+                    end
+                    local ped = CreatePed(value.model, value.coords.x, value.coords.y, value.coords.z - 1.0, value.heading, false, false, 0, 0)
+                    while not DoesEntityExist(ped) do
+                        Wait(1)
+                    end
+                    Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
+                    Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
+                    SetEntityCanBeDamaged(ped, false)
+                    SetEntityInvincible(ped, true)
+                    FreezeEntityPosition(ped, true)
+                    SetBlockingOfNonTemporaryEvents(ped, true)
+                    Wait(1)
+                    TriggerEvent('tcrp-stables:DoShit',function(cb)
+                    end)
+                    exports['qr-target']:AddTargetEntity(ped, {
+                        options = {
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Get your horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:menu")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Store Horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:storehorse")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Sell your horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:MenuDel")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label =  "Tack Shop",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                TriggerEvent('tcrp-stables:client:custShop')
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label =  "Trade Horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                TriggerEvent('tcrp-stables:client:tradehorse')
+                                end
+                            }
+                        },
+                        distance = 2.5,
+                    })
+                    SetModelAsNoLongerNeeded(value.model)
+                    table.insert(vhnpcs, ped)
+                end
+            else
+            end
+        else 
+            inVanhornn = false
+            Wait(1000)
+            for k,v in pairs(vhnpcs) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+Citizen.CreateThread(function() -- Handle Colter
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.ColterCoords
+        Wait(10000)
+         if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inColter == false then
+                inColter = true
+                for k,v in pairs(Config.BoxZones) do
+                    if k == "Colter" then
+                        for j, n in pairs(v) do
+                            Wait(1)
+                            local model = GetHashKey(n.model)
+                            while (not HasModelLoaded(model)) do
+                                RequestModel(model)
+                                Wait(1)
+                            end
+                            local entity = CreatePed(model, n.coords.x, n.coords.y, n.coords.z-1, n.heading, false, true, 0, 0)
+                            while not DoesEntityExist(entity) do
+                                Wait(1)
+                            end
+                            local hasSpawned = true
+                            table.insert(centities, entity)
+                            Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
+                            FreezeEntityPosition(entity, true)
+                            SetEntityCanBeDamaged(entity, false)
+                            SetEntityInvincible(entity, true)
+                            SetBlockingOfNonTemporaryEvents(npc, true)
+                            exports['qr-target']:AddTargetEntity(entity, {
+                                options = {
+                                    {
+                                        icon = "fas fa-horse-head",
+                                        label =  n.names.." || " .. n.price ..  "$",
+                                        targeticon = "fas fa-eye",
+                                        action = function(newnames)
+                                                AddTextEntry('FMMC_MPM_NA', "Set horse name")
+                                                DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
+                                                while (UpdateOnscreenKeyboard() == 0) do
+                                                    DisableAllControlActions(0);
+                                                    Wait(0);
+                                                end
+                                                if (GetOnscreenKeyboardResult()) then
+                                                    newnames = GetOnscreenKeyboardResult()
+                                                    TriggerServerEvent('tcrp-stables:server:BuyHorse', n.price, n.model, newnames)
+                                                else
+                                            end
+                                            
+                                        end
+                                    }
+                                },
+                                distance = 2.5,
+                            })
+                            Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
+                            SetModelAsNoLongerNeeded(model)
+                        end
+                    else
+                    end
+                end
+            end
+        else 
+            inColter = false
+            Wait(1000)
+            for k,v in pairs(centities) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+
+Citizen.CreateThread(function() -- Handle Colter NPC
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.ColterCoords
+        Wait(10000)
+        if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inColtern == false then
+                inColtern = true            
+                for key,value in pairs(Config.ModelSpawns) do
+                    while not HasModelLoaded(value.model) do
+                        RequestModel(value.model)
+                        Wait(1)
+                    end
+                    local ped = CreatePed(value.model, value.coords.x, value.coords.y, value.coords.z - 1.0, value.heading, false, false, 0, 0)
+                    while not DoesEntityExist(ped) do
+                        Wait(1)
+                    end
+                    Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
+                    Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
+                    SetEntityCanBeDamaged(ped, false)
+                    SetEntityInvincible(ped, true)
+                    FreezeEntityPosition(ped, true)
+                    SetBlockingOfNonTemporaryEvents(ped, true)
+                    Wait(1)
+                    TriggerEvent('tcrp-stables:DoShit',function(cb)
+                    end)
+                    exports['qr-target']:AddTargetEntity(ped, {
+                        options = {
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Get your horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:menu")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Store Horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:storehorse")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Sell your horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:MenuDel")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label =  "Tack Shop",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                TriggerEvent('tcrp-stables:client:custShop')
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label =  "Trade Horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                TriggerEvent('tcrp-stables:client:tradehorse')
+                                end
+                            }
+                        },
+                        distance = 2.5,
+                    })
+                    SetModelAsNoLongerNeeded(value.model)
+                    table.insert(cnpcs, ped)
+                end
+            else
+            end
+        else 
+            inColtern = false
+            Wait(1000)
+            for k,v in pairs(cnpcs) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+Citizen.CreateThread(function() -- Handle Tumbleweed
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.BlackwaterCoords
+        Wait(10000)
+         if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inTumble == false then
+                inTumble = true
+                for k,v in pairs(Config.BoxZones) do
+                    if k == "Tumbleweed" then
+                        for j, n in pairs(v) do
+                            Wait(1)
+                            local model = GetHashKey(n.model)
+                            while (not HasModelLoaded(model)) do
+                                RequestModel(model)
+                                Wait(1)
+                            end
+                            local entity = CreatePed(model, n.coords.x, n.coords.y, n.coords.z-1, n.heading, false, true, 0, 0)
+                            while not DoesEntityExist(entity) do
+                                Wait(1)
+                            end
+                            local hasSpawned = true
+                            table.insert(tbentities, entity)
+                            Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
+                            FreezeEntityPosition(entity, true)
+                            SetEntityCanBeDamaged(entity, false)
+                            SetEntityInvincible(entity, true)
+                            SetBlockingOfNonTemporaryEvents(npc, true)
+                            exports['qr-target']:AddTargetEntity(entity, {
+                                options = {
+                                    {
+                                        icon = "fas fa-horse-head",
+                                        label =  n.names.." || " .. n.price ..  "$",
+                                        targeticon = "fas fa-eye",
+                                        action = function(newnames)
+                                                AddTextEntry('FMMC_MPM_NA', "Set horse name")
+                                                DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
+                                                while (UpdateOnscreenKeyboard() == 0) do
+                                                    DisableAllControlActions(0);
+                                                    Wait(0);
+                                                end
+                                                if (GetOnscreenKeyboardResult()) then
+                                                    newnames = GetOnscreenKeyboardResult()
+                                                    TriggerServerEvent('tcrp-stables:server:BuyHorse', n.price, n.model, newnames)
+                                                else
+                                            end
+                                            
+                                        end
+                                    }
+                                },
+                                distance = 2.5,
+                            })
+                            Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
+                            SetModelAsNoLongerNeeded(model)
+                        end
+                    else
+                    end
+                end
+            end
+        else 
+            inTumble = false
+            Wait(1000)
+            for k,v in pairs(tbentities) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+
+Citizen.CreateThread(function() -- Handle Tumbleweed NPC
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.TumbleweedCoords
+        Wait(10000)
+        if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inTumblen == false then
+                inTumblen = true            
+                for key,value in pairs(Config.ModelSpawns) do
+                    while not HasModelLoaded(value.model) do
+                        RequestModel(value.model)
+                        Wait(1)
+                    end
+                    local ped = CreatePed(value.model, value.coords.x, value.coords.y, value.coords.z - 1.0, value.heading, false, false, 0, 0)
+                    while not DoesEntityExist(ped) do
+                        Wait(1)
+                    end
+                    Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
+                    Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
+                    SetEntityCanBeDamaged(ped, false)
+                    SetEntityInvincible(ped, true)
+                    FreezeEntityPosition(ped, true)
+                    SetBlockingOfNonTemporaryEvents(ped, true)
+                    Wait(1)
+                    TriggerEvent('tcrp-stables:DoShit',function(cb)
+                    end)
+                    exports['qr-target']:AddTargetEntity(ped, {
+                        options = {
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Get your horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:menu")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Store Horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:storehorse")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label = "Sell your horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                    TriggerEvent("tcrp-stables:client:MenuDel")
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label =  "Tack Shop",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                TriggerEvent('tcrp-stables:client:custShop')
+                                end
+                            },
+                            {
+                                icon = "fas fa-horse-head",
+                                label =  "Trade Horse",
+                                targeticon = "fas fa-eye",
+                                action = function()
+                                TriggerEvent('tcrp-stables:client:tradehorse')
+                                end
+                            }
+                        },
+                        distance = 2.5,
+                    })
+                    SetModelAsNoLongerNeeded(value.model)
+                    table.insert(twnpcs, ped)
+                end
+            else
+            end
+        else 
+            inTumblen = false
+            Wait(1000)
+            for k,v in pairs(twnpcs) do
                 DeletePed(v)
                 SetEntityAsNoLongerNeeded(v)
             end
@@ -597,10 +1135,31 @@ Citizen.CreateThread(function() -- Handle Rhodes
                             Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
                             SetModelAsNoLongerNeeded(model)
                         end
-                    else 
+                    else
                     end
                 end
-            
+            end
+        else 
+            inRhodes = false
+            Wait(1000)
+            for k,v in pairs(rhodesentities) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+
+Citizen.CreateThread(function() -- Handle Rhodes NPC
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.RhodesCoords
+        Wait(10000)
+        if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inRhodesn == false then
+                inRhodesn = true            
                 for key,value in pairs(Config.ModelSpawns) do
                     while not HasModelLoaded(value.model) do
                         RequestModel(value.model)
@@ -610,7 +1169,6 @@ Citizen.CreateThread(function() -- Handle Rhodes
                     while not DoesEntityExist(ped) do
                         Wait(1)
                     end
-            
                     Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
                     Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
                     SetEntityCanBeDamaged(ped, false)
@@ -671,301 +1229,9 @@ Citizen.CreateThread(function() -- Handle Rhodes
             else
             end
         else 
-            inRhodes = false
+            inRhodesn = false
             Wait(1000)
-            for k,v in pairs(rhodesentities) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
             for k,v in pairs(rhnpcs) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
-        end 
-    end
-end)
-
-Citizen.CreateThread(function() -- Handle Blackwater
-    while true do
-        local pcoords = GetEntityCoords(PlayerPedId())
-        local hcoords = Config.BlackwaterCoords
-        Wait(10000)
-         if #(pcoords - hcoords) <= 300.7 then  
-            Wait(100)
-            if inBlackwater == false then
-                inBlackwater = true
-                for k,v in pairs(Config.BoxZones) do
-                    if k == "Blackwater" then
-                        for j, n in pairs(v) do
-                            Wait(1)
-                            local model = GetHashKey(n.model)
-                            while (not HasModelLoaded(model)) do
-                                RequestModel(model)
-                                Wait(1)
-                            end
-                            local entity = CreatePed(model, n.coords.x, n.coords.y, n.coords.z-1, n.heading, false, true, 0, 0)
-                            while not DoesEntityExist(entity) do
-                                Wait(1)
-                            end
-                            local hasSpawned = true
-                            table.insert(bwentities, entity)
-                            Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
-                            FreezeEntityPosition(entity, true)
-                            SetEntityCanBeDamaged(entity, false)
-                            SetEntityInvincible(entity, true)
-                            SetBlockingOfNonTemporaryEvents(npc, true)
-                            exports['qr-target']:AddTargetEntity(entity, {
-                                options = {
-                                    {
-                                        icon = "fas fa-horse-head",
-                                        label =  n.names.." || " .. n.price ..  "$",
-                                        targeticon = "fas fa-eye",
-                                        action = function(newnames)
-                                                AddTextEntry('FMMC_MPM_NA', "Set horse name")
-                                                DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
-                                                while (UpdateOnscreenKeyboard() == 0) do
-                                                    DisableAllControlActions(0);
-                                                    Wait(0);
-                                                end
-                                                if (GetOnscreenKeyboardResult()) then
-                                                    newnames = GetOnscreenKeyboardResult()
-                                                    TriggerServerEvent('tcrp-stables:server:BuyHorse', n.price, n.model, newnames)
-                                                else
-                                            end
-                                            
-                                        end
-                                    }
-                                },
-                                distance = 2.5,
-                            })
-                            Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
-                            SetModelAsNoLongerNeeded(model)
-                        end
-                    else 
-                    end
-                end
-            
-                for key,value in pairs(Config.ModelSpawns) do
-                    while not HasModelLoaded(value.model) do
-                        RequestModel(value.model)
-                        Wait(1)
-                    end
-                    local ped = CreatePed(value.model, value.coords.x, value.coords.y, value.coords.z - 1.0, value.heading, false, false, 0, 0)
-                    while not DoesEntityExist(ped) do
-                        Wait(1)
-                    end
-            
-                    Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
-                    Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
-                    SetEntityCanBeDamaged(ped, false)
-                    SetEntityInvincible(ped, true)
-                    FreezeEntityPosition(ped, true)
-                    SetBlockingOfNonTemporaryEvents(ped, true)
-                    Wait(1)
-                    TriggerEvent('tcrp-stables:DoShit',function(cb)
-                    end)
-                    exports['qr-target']:AddTargetEntity(ped, {
-                        options = {
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Get your horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:menu")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Store Horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:storehorse")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Sell your horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:MenuDel")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label =  "Tack Shop",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                TriggerEvent('tcrp-stables:client:custShop')
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label =  "Trade Horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                TriggerEvent('tcrp-stables:client:tradehorse')
-                                end
-                            }
-                        },
-                        distance = 2.5,
-                    })
-                    SetModelAsNoLongerNeeded(value.model)
-                    table.insert(bwnpcs, ped)
-                end
-            else
-            end
-        else 
-            inBlackwater = false
-            Wait(1000)
-            for k,v in pairs(bwentities) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
-            for k,v in pairs(bwnpcs) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
-        end 
-    end
-end)
-
-Citizen.CreateThread(function() -- Handle Strawberry
-    while true do
-        local pcoords = GetEntityCoords(PlayerPedId())
-        local hcoords = Config.StrawberryCoords 
-        Wait(10000)
-         if #(pcoords - hcoords) <= 300.7 then  
-            Wait(100)
-            if inStrawberry == false then
-                inStrawberry = true
-                for k,v in pairs(Config.BoxZones) do
-                    if k == "Strawberry" then
-                        for j, n in pairs(v) do
-                            Wait(1)
-                            local model = GetHashKey(n.model)
-                            while (not HasModelLoaded(model)) do
-                                RequestModel(model)
-                                Wait(1)
-                            end
-                            local entity = CreatePed(model, n.coords.x, n.coords.y, n.coords.z-1, n.heading, false, true, 0, 0)
-                            while not DoesEntityExist(entity) do
-                                Wait(1)
-                            end
-                            local hasSpawned = true
-                            table.insert(strawberryentities, entity)
-                            Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
-                            FreezeEntityPosition(entity, true)
-                            SetEntityCanBeDamaged(entity, false)
-                            SetEntityInvincible(entity, true)
-                            SetBlockingOfNonTemporaryEvents(npc, true)
-                            exports['qr-target']:AddTargetEntity(entity, {
-                                options = {
-                                    {
-                                        icon = "fas fa-horse-head",
-                                        label =  n.names.." || " .. n.price ..  "$",
-                                        targeticon = "fas fa-eye",
-                                        action = function(newnames)
-                                                AddTextEntry('FMMC_MPM_NA', "Set horse name")
-                                                DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
-                                                while (UpdateOnscreenKeyboard() == 0) do
-                                                    DisableAllControlActions(0);
-                                                    Wait(0);
-                                                end
-                                                if (GetOnscreenKeyboardResult()) then
-                                                    newnames = GetOnscreenKeyboardResult()
-                                                    TriggerServerEvent('tcrp-stables:server:BuyHorse', n.price, n.model, newnames)
-                                                else
-                                            end
-                                            
-                                        end
-                                    }
-                                },
-                                distance = 2.5,
-                            })
-                            Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
-                            SetModelAsNoLongerNeeded(model)
-                        end
-                    else 
-                    end
-                end
-            
-                for key,value in pairs(Config.ModelSpawns) do
-                    while not HasModelLoaded(value.model) do
-                        RequestModel(value.model)
-                        Wait(1)
-                    end
-                    local ped = CreatePed(value.model, value.coords.x, value.coords.y, value.coords.z - 1.0, value.heading, false, false, 0, 0)
-                    while not DoesEntityExist(ped) do
-                        Wait(1)
-                    end
-            
-                    Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
-                    Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
-                    SetEntityCanBeDamaged(ped, false)
-                    SetEntityInvincible(ped, true)
-                    FreezeEntityPosition(ped, true)
-                    SetBlockingOfNonTemporaryEvents(ped, true)
-                    Wait(1)
-                    TriggerEvent('tcrp-stables:DoShit',function(cb)
-                    end)
-                    exports['qr-target']:AddTargetEntity(ped, {
-                        options = {
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Get your horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:menu")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Store Horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:storehorse")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Sell your horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:MenuDel")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label =  "Tack Shop",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                TriggerEvent('tcrp-stables:client:custShop')
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label =  "Trade Horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                TriggerEvent('tcrp-stables:client:tradehorse')
-                                end
-                            }
-                        },
-                        distance = 2.5,
-                    })
-                    SetModelAsNoLongerNeeded(value.model)
-                    table.insert(sbnpcs, ped)
-                end
-            else
-            end
-        else 
-            inStrawberry = false
-            Wait(1000)
-            for k,v in pairs(strawberryentities) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
-            for k,v in pairs(sbnpcs) do
                 DeletePed(v)
                 SetEntityAsNoLongerNeeded(v)
             end
@@ -976,7 +1242,7 @@ end)
 Citizen.CreateThread(function() -- Handle Saint Denis
     while true do
         local pcoords = GetEntityCoords(PlayerPedId())
-        local hcoords = Config.SDCoords 
+        local hcoords = Config.SDCoords
         Wait(10000)
          if #(pcoords - hcoords) <= 300.7 then  
             Wait(100)
@@ -1029,10 +1295,31 @@ Citizen.CreateThread(function() -- Handle Saint Denis
                             Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
                             SetModelAsNoLongerNeeded(model)
                         end
-                    else 
+                    else
                     end
                 end
-            
+            end
+        else 
+            inSD = false
+            Wait(1000)
+            for k,v in pairs(sdentities) do
+                DeletePed(v)
+                SetEntityAsNoLongerNeeded(v)
+            end
+        end 
+    end
+end)
+
+
+Citizen.CreateThread(function() -- Handle Saint Denis NPC
+    while true do
+        local pcoords = GetEntityCoords(PlayerPedId())
+        local hcoords = Config.SDCoords
+        Wait(10000)
+        if #(pcoords - hcoords) <= 300.7 then  
+            Wait(100)
+            if inSDn == false then
+                inSDn = true            
                 for key,value in pairs(Config.ModelSpawns) do
                     while not HasModelLoaded(value.model) do
                         RequestModel(value.model)
@@ -1042,7 +1329,6 @@ Citizen.CreateThread(function() -- Handle Saint Denis
                     while not DoesEntityExist(ped) do
                         Wait(1)
                     end
-            
                     Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
                     Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
                     SetEntityCanBeDamaged(ped, false)
@@ -1103,12 +1389,8 @@ Citizen.CreateThread(function() -- Handle Saint Denis
             else
             end
         else 
-            inSD = false
+            inSDn = false
             Wait(1000)
-            for k,v in pairs(sdentities) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
             for k,v in pairs(sdnpcs) do
                 DeletePed(v)
                 SetEntityAsNoLongerNeeded(v)
@@ -1116,150 +1398,6 @@ Citizen.CreateThread(function() -- Handle Saint Denis
         end 
     end
 end)
-Citizen.CreateThread(function() -- Handle Tumbleweed
-    while true do
-        local pcoords = GetEntityCoords(PlayerPedId())
-        local hcoords = Config.TumbleweedCoords 
-        Wait(10000)
-         if #(pcoords - hcoords) <= 300.7 then  
-            Wait(100)
-            if inTumble == false then
-                inTumble = true
-                for k,v in pairs(Config.BoxZones) do
-                    if k == "Tumbleweed" then
-                        for j, n in pairs(v) do
-                            Wait(1)
-                            local model = GetHashKey(n.model)
-                            while (not HasModelLoaded(model)) do
-                                RequestModel(model)
-                                Wait(1)
-                            end
-                            local entity = CreatePed(model, n.coords.x, n.coords.y, n.coords.z-1, n.heading, false, true, 0, 0)
-                            while not DoesEntityExist(entity) do
-                                Wait(1)
-                            end
-                            local hasSpawned = true
-                            table.insert(tbentities, entity)
-                            Citizen.InvokeNative(0x283978A15512B2FE, entity, true)
-                            FreezeEntityPosition(entity, true)
-                            SetEntityCanBeDamaged(entity, false)
-                            SetEntityInvincible(entity, true)
-                            SetBlockingOfNonTemporaryEvents(npc, true)
-                            exports['qr-target']:AddTargetEntity(entity, {
-                                options = {
-                                    {
-                                        icon = "fas fa-horse-head",
-                                        label =  n.names.." || " .. n.price ..  "$",
-                                        targeticon = "fas fa-eye",
-                                        action = function(newnames)
-                                                AddTextEntry('FMMC_MPM_NA', "Set horse name")
-                                                DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "", "", "", "", "", 30)
-                                                while (UpdateOnscreenKeyboard() == 0) do
-                                                    DisableAllControlActions(0);
-                                                    Wait(0);
-                                                end
-                                                if (GetOnscreenKeyboardResult()) then
-                                                    newnames = GetOnscreenKeyboardResult()
-                                                    TriggerServerEvent('tcrp-stables:server:BuyHorse', n.price, n.model, newnames)
-                                                else
-                                            end
-                                            
-                                        end
-                                    }
-                                },
-                                distance = 2.5,
-                            })
-                            Citizen.InvokeNative(0x9587913B9E772D29, entity, 0)
-                            SetModelAsNoLongerNeeded(model)
-                        end
-                    else 
-                    end
-                end
-            
-                for key,value in pairs(Config.ModelSpawns) do
-                    while not HasModelLoaded(value.model) do
-                        RequestModel(value.model)
-                        Wait(1)
-                    end
-                    local ped = CreatePed(value.model, value.coords.x, value.coords.y, value.coords.z - 1.0, value.heading, false, false, 0, 0)
-                    while not DoesEntityExist(ped) do
-                        Wait(1)
-                    end
-            
-                    Citizen.InvokeNative(0x283978A15512B2FE, ped, true)
-                    Citizen.InvokeNative(0x06FAACD625D80CAA, ped)
-                    SetEntityCanBeDamaged(ped, false)
-                    SetEntityInvincible(ped, true)
-                    FreezeEntityPosition(ped, true)
-                    SetBlockingOfNonTemporaryEvents(ped, true)
-                    Wait(1)
-                    TriggerEvent('tcrp-stables:DoShit',function(cb)
-                    end)
-                    exports['qr-target']:AddTargetEntity(ped, {
-                        options = {
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Get your horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:menu")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Store Horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:storehorse")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label = "Sell your horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                    TriggerEvent("tcrp-stables:client:MenuDel")
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label =  "Tack Shop",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                TriggerEvent('tcrp-stables:client:custShop')
-                                end
-                            },
-                            {
-                                icon = "fas fa-horse-head",
-                                label =  "Trade Horse",
-                                targeticon = "fas fa-eye",
-                                action = function()
-                                TriggerEvent('tcrp-stables:client:tradehorse')
-                                end
-                            }
-                        },
-                        distance = 2.5,
-                    })
-                    SetModelAsNoLongerNeeded(value.model)
-                    table.insert(twnpcs, ped)
-                end
-            else
-            end
-        else 
-            inTumble = false
-            Wait(1000)
-            for k,v in pairs(tbentities) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
-            for k,v in pairs(twnpcs) do
-                DeletePed(v)
-                SetEntityAsNoLongerNeeded(v)
-            end
-        end 
-    end
-end)
-
 
 CreateThread(function()
     while true do
@@ -1331,6 +1469,7 @@ local function SpawnHorse()
                 if atCoords == nil then
                     local x, y, z = table.unpack(location)
                     local bool, nodePosition = GetClosestVehicleNode(x, y, z, 0, 3.0, 0.0)
+                    print(nodePosition)
             
                     local index = 0
                     while index <= 25 do
@@ -1339,6 +1478,7 @@ local function SpawnHorse()
                             bool = _bool
                             nodePosition = _nodePosition
                             index = index + 3
+                            print(nodePosition)
                         else
                             break
                         end
@@ -1369,6 +1509,7 @@ local function SpawnHorse()
                         HorseCalled = false
                     else 
                         SetModelAsNoLongerNeeded(model)
+                        print(horsePed)
                         Citizen.InvokeNative(0x58A850EAEE20FAA3, horsePed, true)
                         while not DoesEntityExist(horsePed) do
                             Wait(10)
