@@ -589,7 +589,7 @@ Citizen.CreateThread(function() -- Handle Strawberry NPC
             else
             end
         else 
-            inBlackwatern = false
+            inStrawberryn = false
             Wait(1000)
             for k,v in pairs(sbnpcs) do
                 DeletePed(v)
@@ -922,7 +922,7 @@ end)
 Citizen.CreateThread(function() -- Handle Tumbleweed
     while true do
         local pcoords = GetEntityCoords(PlayerPedId())
-        local hcoords = Config.BlackwaterCoords
+        local hcoords = Config.TumbleweedCoords
         Wait(10000)
          if #(pcoords - hcoords) <= 300.7 then  
             Wait(100)
